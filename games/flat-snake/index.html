@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Flat Snake - Husnain Taj</title>
+  <script src="Build/UnityLoader.js"></script>
+  <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGL.json");
+  </script>
+  <style>
+    body {
+      background: #262626;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      padding: 20px 40px;
+      font-weight: 700;
+      font-family: sans-serif;
+      font-size: large;
+      background-color: #745cca;
+	  height: fit-content;
+	  cursor: pointer;
+    }
+
+    button:hover,
+    button.active {
+      background-color: #2ecc71;
+    }
+
+    #lb {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      height: 600px;
+      overflow-x: hidden;
+      overflow-y: auto;
+	  grid-template-rows: min-content;
+	  background-color: black;
+    }
+	
+    #board, ul {
+      margin: 0;
+      list-style: none;
+      padding: 0;
+      grid-column-start: span 3;
+    }
+	#board {
+	  padding: 0 10px;
+    }
+
+    li {
+      margin-bottom: 1px;
+      padding: 20px;
+      background: black;
+      display: flex;
+      justify-content: space-between;
+	  border-bottom: 1px solid dimgrey;
+    }
+	.hide
+	{
+		display: none;
+	}
+
+	/* width */
+	::-webkit-scrollbar {
+		width: 12px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: black;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #745cca;
+		border: 3px solid black;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #2ecc71;
+	}
+  </style>
+</head>
+
+<body>
+  <div id="gameContainer" style="width: 800px; height: 600px;"></div>
+  <div id="lb">
+    <button id="easy" onclick="loadBoard('easy', this)">Easy</button>
+    <button id="medium" onclick="loadBoard('medium', this)">Medium</button>
+    <button id="hard" onclick="loadBoard('hard', this)">Hard</button>
+	<div id="board">
+		<ul style="display:flex;justify-content:center;align-items:center;height:100%">
+			<li><span style="margin:0 auto;text-align: center;">Loading...</span></li>
+		</ul>
+	</div>
+	<small style="display: block;position: absolute;transform: translate(10px, -26px);color: darkgray;">Refreshes every 24 hours</small>
+  </div>
+
+  <script>
+	let boards = [];
+
+	function loadBoard(diff)
+	{
+		let scores = Object.entries(boards[diff] || []);
+		scores.sort((a, b) => b[1] - a[1]);
+		if(scores?.length)
+		{
+			board.innerHTML = `
+				<ul>
+					${scores.map((score, i) => `<li><span>${score[0]}</span><span>${score[1]}</span></li>`).join('')}
+				</ul>
+			`;
+		}
+		else
+		{
+			board.innerHTML = `
+			<ul style="display:flex;justify-content:center;align-items:center;height:100%"">
+				<li><span style="margin:0 auto;text-align: center;">No Scores Yet.<br> Why not go and set one yourself?</span></li>
+			</ul>`;
+		}
+
+		document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+		document.getElementById(diff).classList.add('active');
+	}
+
+	(async ()=>{
+		boards = await (await fetch('http://node.perspective-v.com/score')).json();
+		console.log(boards);
+
+		loadBoard('easy');
+	})();
+  </script>
+</body>
+
+</html>
