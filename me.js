@@ -54,8 +54,8 @@ let medata = {
     ],
     "projects":[
         new project("KonsoleJS", "A JS Library for building console like UI in your website.", "https://github.com/HusnainTaj/KonsoleJS"),
-        new project("Flat Snake", "A minimalist retro style snake game", "https://husnain.taj.contact/games/flat-snake"),
-        new project("Platformer Quest", "A puzzle platformer game", "https://husnain.taj.contact/games/platformer-quest"),
+        new project("Flat Snake", "A minimalist retro style snake game", "https://husnain.taj.contact/games/fs"),
+        new project("Platformer Quest", "A puzzle platformer game", "https://husnain.taj.contact/games/pq"),
         new project("DPI Finder", "Simple web app to find DPI of a mouse.", "https://github.com/HusnainTaj/DPI-Finder"),
         new project("Draggable Nestable List", "JavaScript Library for adding rearranging and nesting functionality to simple lists.", "https://github.com/HusnainTaj/DraggableNestableList"),
     ],
