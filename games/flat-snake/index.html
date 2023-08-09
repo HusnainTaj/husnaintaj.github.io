@@ -138,7 +138,7 @@
 	}
 
 	(async ()=>{
-		boards = await (await fetch('http://node.perspective-v.com/score')).json();
+		boards = await (await fetch('https://node.perspective-v.com/score')).json();
 		console.log(boards);
 
 		loadBoard('easy');
