@@ -65,7 +65,7 @@ $(async ()=>{
     konsole.RegisterKommand(new Kommand("projects", "projects i've worked or working on.", null, ()=>{
         return new Promise(async (resolve, reject)=>{
             for (const project of medata.projects) {
-                await konsole.print(`${toAnchorTag(project.name, project.url)} - ${project.desc}`);
+                await konsole.print(`${toAnchorTag(project.name, project.url)} - ${project.desc}${project.sourceUrl ? " - " + toAnchorTag("source code", project.sourceUrl) : ""}`);
             }
             resolve();
         });
