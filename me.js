@@ -83,7 +83,7 @@ let medata = {
         new category("Android",
         [
             "Native",
-            "Jetpack Compose"
+            "Jetpack Compose",
             `MAUI [planning]`,
             `Flutter [planning]`,
         ]),
