@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Tiny Tanks War - Husnain Taj</title>
+  <style>
+    body {
+      background: #262626;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+  <script src="Build/UnityLoader.js"></script>
+  <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGL.json");
+  </script>
+</head>
+
+<body>
+  <div id="gameContainer" style="width: 800px; height: 600px; margin: auto"></div>
+</body>
+
+</html>

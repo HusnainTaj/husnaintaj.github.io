@@ -53,11 +53,14 @@ let medata = {
         "Dart [planning]"
     ],
     "projects":[
-        new project("KonsoleJS", "A JS Library for building console like UI in your website.", "https://github.com/HusnainTaj/KonsoleJS"),
+        new project("KonsoleJS", "A JS Library for building console like UI in your website", "https://github.com/HusnainTaj/KonsoleJS"),
         new project("Flat Snake", "A minimalist retro style snake game", "https://husnain.taj.contact/games/fs"),
         new project("Platformer Quest", "A puzzle platformer game", "https://husnain.taj.contact/games/pq"),
-        new project("DPI Finder", "Simple web app to find DPI of a mouse.", "https://github.com/HusnainTaj/DPI-Finder"),
-        new project("Draggable Nestable List", "JavaScript Library for adding rearranging and nesting functionality to simple lists.", "https://github.com/HusnainTaj/DraggableNestableList"),
+        new project("Shooting Galary", "A simple over the counter style duck shooting game", "https://husnain.taj.contact/games/sg"),
+        new project("Tiny Tank Wars", "A local 2 player 2d top-down tanks shooter game", "https://husnain.taj.contact/games/ttw"),
+        new project("Unlucky Ball", "A puzzle platformer with annoyingly hard controls", "https://husnain.taj.contact/games/ub"),
+        new project("DPI Finder", "Simple web app to find DPI of a mouse", "https://github.com/HusnainTaj/DPI-Finder"),
+        new project("Draggable Nestable List", "JavaScript Library for adding rearranging and nesting functionality to simple lists", "https://github.com/HusnainTaj/DraggableNestableList"),
     ],
     "technologies":[
         new category("Web",
@@ -80,6 +83,7 @@ let medata = {
         new category("Android",
         [
             "Native",
+            "Jetpack Compose"
             `MAUI [planning]`,
             `Flutter [planning]`,
         ]),
