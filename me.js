@@ -32,7 +32,7 @@ class link
     name = "";
     url = "";
 
-    constructor(n,d,u)
+    constructor(n, u)
     {
         this.name = n;
         this.url = u;
@@ -55,14 +55,17 @@ let medata = {
         "Dart [planning]"
     ],
     "projects":[
-        new project("KonsoleJS", "A JS Library for building console like UI in your website", "https://github.com/HusnainTaj/KonsoleJS"),
+        new project("KonsoleJS", "A JS Library for building console like UI in your website", null, "https://github.com/HusnainTaj/KonsoleJS"),
         new project("Flat Snake", "A minimalist retro style snake game", "https://husnain.taj.contact/games/fs", "https://github.com/HusnainTaj/FlatSnake"),
         new project("Platformer Quest", "A puzzle platformer game", "https://husnain.taj.contact/games/pq", "https://github.com/HusnainTaj/Platformer-Quest"),
-        new project("Shooting Galary", "A simple over the counter style duck shooting game", "https://husnain.taj.contact/games/sg", "https://github.com/HusnainTaj/ShootingGalary"),
+        new project("Breakout", "Classic breakout game clone in C++ console",null, "https://github.com/HusnainTaj/Breakout"),
         new project("Tiny Tank Wars", "A local 2 player 2d top-down tanks shooter game", "https://husnain.taj.contact/games/ttw", "https://github.com/HusnainTaj/TinyTankWars"),
         new project("Unlucky Ball", "A puzzle platformer with annoyingly hard controls", "https://husnain.taj.contact/games/ub", "https://github.com/HusnainTaj/UnluckyBall"),
-        new project("DPI Finder", "Simple web app to find DPI of a mouse", "https://github.com/HusnainTaj/DPI-Finder"),
-        new project("Draggable Nestable List", "JavaScript Library for adding rearranging and nesting functionality to simple lists", "https://github.com/HusnainTaj/DraggableNestableList"),
+        new project("Shooting Galary", "A simple over the counter style duck shooting game", "https://husnain.taj.contact/games/sg", "https://github.com/HusnainTaj/ShootingGalary"),
+        new project("afdbox", "A program that allows you to Compile (with NASM), Run (with DOSBox) and Debug (with AFD) .asm files by just double clicking on them",null, "https://github.com/HusnainTaj/afdbox"),
+        new project("Tetris.asm", "Simple Tetris game written in 16-bit x86 assembly",null, "https://github.com/HusnainTaj/tetris.asm"),
+        // new project("DPI Finder", "Simple web app to find DPI of a mouse", "https://github.com/HusnainTaj/DPI-Finder"),
+        new project("Draggable Nestable List", "JavaScript Library for adding rearranging and nesting functionality to simple lists", "https://husnaintaj.github.io/DraggableNestableList/", "https://github.com/HusnainTaj/DraggableNestableList"),
     ],
     "technologies":[
         new category("Web",
@@ -73,6 +76,9 @@ let medata = {
             `Angular`,
             `Firebase`,
             `Wordpress`,
+            `Svelte`,
+            `Webpack`,
+            `Vite`,
         ]),
         new category("Desktop",
         [
@@ -86,6 +92,7 @@ let medata = {
         [
             "Native",
             "Jetpack Compose",
+            "Google Play Services",
             `MAUI [planning]`,
             `Flutter [planning]`,
         ]),

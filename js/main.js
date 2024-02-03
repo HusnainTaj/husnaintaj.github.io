@@ -65,7 +65,7 @@ $(async ()=>{
     konsole.RegisterKommand(new Kommand("projects", "projects i've worked or working on.", null, ()=>{
         return new Promise(async (resolve, reject)=>{
             for (const project of medata.projects) {
-                await konsole.print(`${toAnchorTag(project.name, project.url)} - ${project.desc}${project.sourceUrl ? " - " + toAnchorTag("source code", project.sourceUrl) : ""}`);
+                await konsole.print(`${project.url ? toAnchorTag(project.name, project.url) : project.name} - ${project.desc}${project.sourceUrl ? " - " + toAnchorTag("source code", project.sourceUrl) : ""}`);
             }
             resolve();
         });
@@ -89,12 +89,22 @@ $(async ()=>{
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("-".repeat(10), "-".repeat(30), null, null));
+    konsole.RegisterKommand(new Kommand("-".repeat(10), "-".repeat(30), null, ()=>{}));
+
+    konsole.RegisterKommand(new Kommand("noanimate", "disable text printing animation", null, ()=>{
+        return new Promise(async (resolve, reject)=>{
+            konsole.konsoleSettings.animatePrint = false;
+            await konsole.print("Text printing animation disabled.");
+            resolve();
+        });
+    }));
 
     konsole.RegisterDefaultKommands();
+
+    await konsole.print("Welcome!")
+    await konsole.print("Type 'help' to see available commands.")
 
     konsole.awaitKommand();
 
     konsole.elem.focus()
-
 });
