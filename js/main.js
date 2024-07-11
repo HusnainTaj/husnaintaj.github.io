@@ -1,11 +1,6 @@
 "use strict";
 
-let ks = new KonsoleSettings();
-ks.animatePrint = true;
-ks.printLetterInterval = 10;
-ks.registerDefaultKommands = false;
-ks.prefix = "T:/>";
-let konsole = new Konsole("#Console", ks);
+let konsole = new Konsole.Konsole("#Console", {printLetterInterval: 10, prefix: "T:/>"});
 
 function toAnchorTag(text, url)
 {
@@ -13,6 +8,8 @@ function toAnchorTag(text, url)
 }
 
 $(async ()=>{
+
+    const Kommand = Konsole.Kommand;
 
     konsole.mcq = (question, choices, correctOption, correctMsg, wrongMsg) =>{
         return new Promise(async (resolve, reject)=>{
@@ -31,13 +28,23 @@ $(async ()=>{
         });
     }
 
-    konsole.RegisterKommand(new Kommand("about", "me", null, ()=>{
+    konsole.addKommand(new Kommand("noanimate", "disable text printing animation", null, ()=>{
+        return new Promise(async (resolve, reject)=>{
+            konsole.settings.animatePrint = false;
+            await konsole.print("Text printing animation disabled.");
+            resolve();
+        });
+    }));
+    
+    konsole.addKommand(new Kommand("-".repeat(10), "-".repeat(30), null, ()=>{}));
+
+    konsole.addKommand(new Kommand("about", "me", null, ()=>{
         return new Promise((resolve, reject)=>{
             konsole.print(...medata.about).then(resolve);
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("quiz", "test your programming IQ.", null, ()=>{
+    konsole.addKommand(new Kommand("quiz", "test your programming IQ.", null, ()=>{
         return new Promise(async (resolve, reject)=>{
             let correctAnsCount = 0;
             let totalQuesCount = 2;
@@ -56,13 +63,13 @@ $(async ()=>{
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("langs", "programming languages i've worked with.", null, ()=>{
+    konsole.addKommand(new Kommand("langs", "programming languages i've worked with.", null, ()=>{
         return new Promise((resolve, reject)=>{
             konsole.print(...medata.languages).then(resolve);
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("projects", "projects i've worked or working on.", null, ()=>{
+    konsole.addKommand(new Kommand("projects", "projects i've worked or working on.", null, ()=>{
         return new Promise(async (resolve, reject)=>{
             for (const project of medata.projects) {
                 await konsole.print(`${project.url ? toAnchorTag(project.name, project.url) : project.name} - ${project.desc}${project.sourceUrl ? " - " + toAnchorTag("source code", project.sourceUrl) : ""}`);
@@ -71,7 +78,7 @@ $(async ()=>{
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("tech", "frameworks and libraries i've worked with or interested in learning.", null, ()=>{
+    konsole.addKommand(new Kommand("tech", "frameworks and libraries i've worked with or interested in learning.", null, ()=>{
         return new Promise(async (resolve, reject)=>{
             for (const tech of medata.technologies) {
                 await konsole.print(`${tech.name}\n${"¯".repeat(tech.name.length)}\n    ${tech.items.join("\n    ")}`);
@@ -80,7 +87,7 @@ $(async ()=>{
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("links", "links to my socials...", null, ()=>{
+    konsole.addKommand(new Kommand("links", "links to my socials...", null, ()=>{
         return new Promise(async (resolve, reject)=>{
             for (const link of medata.links) {
                 await konsole.print(toAnchorTag(link.name, link.url));
@@ -89,17 +96,7 @@ $(async ()=>{
         });
     }));
 
-    konsole.RegisterKommand(new Kommand("-".repeat(10), "-".repeat(30), null, ()=>{}));
-
-    konsole.RegisterKommand(new Kommand("noanimate", "disable text printing animation", null, ()=>{
-        return new Promise(async (resolve, reject)=>{
-            konsole.konsoleSettings.animatePrint = false;
-            await konsole.print("Text printing animation disabled.");
-            resolve();
-        });
-    }));
-
-    konsole.RegisterDefaultKommands();
+    // konsole.RegisterDefaultKommands();
 
     await konsole.print("Welcome!")
     await konsole.print("Type 'help' to see available commands.")
